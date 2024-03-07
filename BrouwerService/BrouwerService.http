@@ -12,3 +12,36 @@ GET {{beginURL}}/brouwers/1
 
 ### een onbestaande brouwer:
 GET http://localhost:5000/brouwers/666666
+
+
+#DELETE
+
+### brouwer 3 verwijderen
+
+DELETE {{beginURL}}/brouwers/3
+
+
+#POST
+
+### brouwer toevoegen
+
+POST {{beginURL}}/brouwers
+content-type:application/json
+
+{
+ "naam":"Bios", 
+ "postcode":9940, 
+ "gemeente":"Ertvelde"
+}
+
+#PUT
+
+### brouwer 2 wijzigen:
+PUT {{beginURL}}/brouwers/2
+Content-Type:application/json
+
+{
+ "naam":"Alken", 
+ "postcode":1000, 
+ "gemeente":"Brussel"
+}
