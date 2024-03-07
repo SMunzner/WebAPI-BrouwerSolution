@@ -7,5 +7,6 @@ namespace BrouwerService.Controllers
     [ApiController]
     public class BierController() : ControllerBase
     {
+
     }
 }
