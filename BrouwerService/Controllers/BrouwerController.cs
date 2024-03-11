@@ -3,6 +3,7 @@ using BrouwerService.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace BrouwerService.Controllers
 {
@@ -14,6 +15,7 @@ namespace BrouwerService.Controllers
         /*------------------------GET--------------------------------------*/
 
         [HttpGet]
+        [SwaggerOperation("Alle brouwers")]
         public async Task<IActionResult> FindAll() => base.Ok(await repository.FindAllAsync());
 
         [HttpGet("{id}")]
@@ -22,20 +24,26 @@ namespace BrouwerService.Controllers
         //    var brouwer = repository.FindById(id);
         //    return brouwer == null? base.NotFound() : base.Ok(brouwer);
         //}
-        
+
         //verkorte versie
+        //url --> brouwers/{id}
+        [SwaggerOperation("Brouwer waarvan je de id kent")]
         public async Task<IActionResult> FindById(int id) => 
            await repository.FindByIdAsync(id) is Brouwer brouwer ? base.Ok(brouwer) : base.NotFound();
 
+        
+        
         // URl --> brouwers/naam?begin=a --> geeft alle met a in naam
         [HttpGet("naam")]
+        [SwaggerOperation("Brouwers waarvan je het begin van de naam kent")]
         public async Task<IActionResult> FindByBeginNaam(string begin) =>
             base.Ok(await repository.FindByBeginNaamAsync(begin));
 
 
         /*-----------------------------DELETE--------------------------------------*/
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}")] 
+        [SwaggerOperation("Brouwer verwijderen")]
         public async Task<IActionResult> Delete(int id)
         {
             var brouwer = await repository.FindByIdAsync(id);
@@ -49,6 +57,7 @@ namespace BrouwerService.Controllers
         /*------------------------------POST------------------------------------------*/
 
         [HttpPost]
+        [SwaggerOperation("Brouwer toevoegen")]
         public async Task<IActionResult> Post(Brouwer brouwer)
         {
             if(this.ModelState.IsValid)     //validation
@@ -63,6 +72,7 @@ namespace BrouwerService.Controllers
         /*----------------------------PUT---------------------------------------------*/
 
         [HttpPut("{id}")]
+        [SwaggerOperation("Brouwer wijzigen")]
         public async Task<IActionResult> Put(int id, Brouwer brouwer)
         {
             if (this.ModelState.IsValid)    //validation ok

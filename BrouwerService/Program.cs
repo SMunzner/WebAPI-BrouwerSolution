@@ -1,6 +1,7 @@
 
 using BrouwerService.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 
 namespace BrouwerService
 {
@@ -29,15 +30,29 @@ namespace BrouwerService
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            builder.Services.AddSwaggerGen(c => c.EnableAnnotations());     //SwashBuckle --> Annotations for doc
+
+            //configure 
+            builder.Services.AddScoped<IFiliaalRepository, FiliaalRepository>();
+
+
+            //Cross origin resource sharing --> CORS
+            builder.Services.AddCors();
+
 
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
-                app.UseSwagger();
+                app.UseSwagger(c => c.PreSerializeFilters.Add((swagger, request) => 
+                swagger.Servers = new List<OpenApiServer>
+                { new OpenApiServer { Url = $"{request.Scheme}://{request.Host.Value}" }
+                }));
+
                 app.UseSwaggerUI();
+                //CORS
+                app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader());
             }
 
             app.UseAuthorization();
