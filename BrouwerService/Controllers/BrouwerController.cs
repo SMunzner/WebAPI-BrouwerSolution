@@ -14,7 +14,7 @@ namespace BrouwerService.Controllers
         /*------------------------GET--------------------------------------*/
 
         [HttpGet]
-        public IActionResult FindAll() => base.Ok(repository.FindAll());
+        public async Task<IActionResult> FindAll() => base.Ok(await repository.FindAllAsync());
 
         [HttpGet("{id}")]
         //public IActionResult FindById(int id)
@@ -24,36 +24,36 @@ namespace BrouwerService.Controllers
         //}
         
         //verkorte versie
-        public IActionResult FindById(int id) => 
-            repository.FindById(id) is Brouwer brouwer ? base.Ok(brouwer) : base.NotFound();
+        public async Task<IActionResult> FindById(int id) => 
+           await repository.FindByIdAsync(id) is Brouwer brouwer ? base.Ok(brouwer) : base.NotFound();
 
         // URl --> brouwers/naam?begin=a --> geeft alle met a in naam
         [HttpGet("naam")]
-        public IActionResult FindByBeginNaam(string begin) =>
-            base.Ok(repository.FindByBeginNaam(begin));
+        public async Task<IActionResult> FindByBeginNaam(string begin) =>
+            base.Ok(await repository.FindByBeginNaamAsync(begin));
 
 
         /*-----------------------------DELETE--------------------------------------*/
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var brouwer = repository.FindById(id);
+            var brouwer = await repository.FindByIdAsync(id);
             if(brouwer == null)
                 return base.NotFound();
 
-            repository.Delete(brouwer);
+            await repository.DeleteAsync(brouwer);
             return base.Ok();
         }
 
         /*------------------------------POST------------------------------------------*/
 
         [HttpPost]
-        public IActionResult Post(Brouwer brouwer)
+        public async Task<IActionResult> Post(Brouwer brouwer)
         {
             if(this.ModelState.IsValid)     //validation
             {
-                repository.Insert(brouwer);
+                await repository.InsertAsync(brouwer);
                 return base.CreatedAtAction(nameof(FindById), new { id = brouwer.Id }, null);
             }
             return base.BadRequest(ModelState);       //als validation false terug geeft
@@ -63,14 +63,14 @@ namespace BrouwerService.Controllers
         /*----------------------------PUT---------------------------------------------*/
 
         [HttpPut("{id}")]
-        public IActionResult Put(int id, Brouwer brouwer)
+        public async Task<IActionResult> Put(int id, Brouwer brouwer)
         {
             if (this.ModelState.IsValid)    //validation ok
             {
                 try
                 {
                     brouwer.Id = id;
-                    repository.Update(brouwer);
+                    await repository.UpdateAsync(brouwer);
                     return base.Ok();
                 }
                 catch (DbUpdateConcurrencyException)
