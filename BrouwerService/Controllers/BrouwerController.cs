@@ -51,8 +51,12 @@ namespace BrouwerService.Controllers
         [HttpPost]
         public IActionResult Post(Brouwer brouwer)
         {
-            repository.Insert(brouwer);
-            return base.CreatedAtAction(nameof(FindById), new { id = brouwer.Id }, null);
+            if(this.ModelState.IsValid)     //validation
+            {
+                repository.Insert(brouwer);
+                return base.CreatedAtAction(nameof(FindById), new { id = brouwer.Id }, null);
+            }
+            return base.BadRequest(ModelState);       //als validation false terug geeft
         }
 
 
@@ -61,20 +65,24 @@ namespace BrouwerService.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(int id, Brouwer brouwer)
         {
-            try
+            if (this.ModelState.IsValid)    //validation ok
             {
-                brouwer.Id = id;
-                repository.Update(brouwer);
-                return base.Ok();
+                try
+                {
+                    brouwer.Id = id;
+                    repository.Update(brouwer);
+                    return base.Ok();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    return base.NotFound();
+                }
+                catch
+                {
+                    return base.Problem();
+                }
             }
-            catch (DbUpdateConcurrencyException)
-            {
-                return base.NotFound();
-            }
-            catch
-            {
-                return base.Problem();
-            }
+            return base.BadRequest(ModelState);       //validation not okay
         }
     }
 }

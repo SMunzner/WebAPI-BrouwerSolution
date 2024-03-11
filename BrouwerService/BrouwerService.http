@@ -1,7 +1,7 @@
 @BrouwerService_HostAddress = http://localhost:5050
 
 # prefix van URl opslaan en hergebruiken
-@beginURL=http://localhost:5000
+@beginURL=http://localhost:5050
 
 
 ### alle brouwers
