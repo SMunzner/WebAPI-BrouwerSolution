@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34607.119
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrouwerService", "BrouwerService\BrouwerService.csproj", "{A05688E1-8F6A-41FF-A32E-B2EBBF377594}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BrouwerService", "BrouwerService\BrouwerService.csproj", "{A05688E1-8F6A-41FF-A32E-B2EBBF377594}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrouwerClient", "BrouwerClient\BrouwerClient.csproj", "{8C290BD4-D277-4AB7-B98E-FCE7E86EEF80}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrouwerWebApp", "BrouwerWebApp\BrouwerWebApp.csproj", "{4A75A013-24BD-4762-8A3D-AD49A0BE5DD1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrouwerServiceUnitTests", "BrouwerServiceUnitTests\BrouwerServiceUnitTests.csproj", "{07D19AC8-9413-4C20-A039-D5D6C566D6E2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{A05688E1-8F6A-41FF-A32E-B2EBBF377594}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A05688E1-8F6A-41FF-A32E-B2EBBF377594}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A05688E1-8F6A-41FF-A32E-B2EBBF377594}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C290BD4-D277-4AB7-B98E-FCE7E86EEF80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C290BD4-D277-4AB7-B98E-FCE7E86EEF80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C290BD4-D277-4AB7-B98E-FCE7E86EEF80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C290BD4-D277-4AB7-B98E-FCE7E86EEF80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A75A013-24BD-4762-8A3D-AD49A0BE5DD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A75A013-24BD-4762-8A3D-AD49A0BE5DD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A75A013-24BD-4762-8A3D-AD49A0BE5DD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A75A013-24BD-4762-8A3D-AD49A0BE5DD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07D19AC8-9413-4C20-A039-D5D6C566D6E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07D19AC8-9413-4C20-A039-D5D6C566D6E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07D19AC8-9413-4C20-A039-D5D6C566D6E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07D19AC8-9413-4C20-A039-D5D6C566D6E2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

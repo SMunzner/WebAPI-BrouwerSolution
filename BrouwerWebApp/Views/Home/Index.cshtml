@@ -1,0 +1,18 @@
+﻿@model List<Brouwer>
+@{
+    ViewData["Title"] = "Brouwers";
+}
+<ul>
+    @foreach (var brouwer in Model!)
+    {
+        <li><a href="#" data-id="@brouwer.Id">@brouwer.Naam</a></li>
+    }
+</ul>
+<dl>
+    <dt>Postcode</dt>
+    <dd id="postcode"></dd>
+    <dt>Gemeente</dt>
+    <dd id="gemeente"></dd>
+</dl>
+<script src="~/js/index.js" defer></script>
+

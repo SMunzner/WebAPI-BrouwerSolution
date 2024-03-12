@@ -10,7 +10,7 @@ namespace BrouwerService.Controllers
     [ApiController]
     public class FiliaalController(IFiliaalRepository repository) : ControllerBase
     {
-        [HttpGet, SwaggerOperation("Alle filialen")]
+        [HttpGet, SwaggerOperation("Alle filialen")]    //geef naam voor /swagger
         public async Task<ActionResult> FindAll()
         {
             var filialen = await repository.FindAllAsync();

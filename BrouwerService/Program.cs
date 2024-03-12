@@ -40,6 +40,9 @@ namespace BrouwerService
             builder.Services.AddCors();
 
 
+            //C# Client --> Web applicatie
+            builder.Services.AddHttpClient();
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
